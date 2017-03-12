@@ -1,18 +1,22 @@
-import { readLine } from './lib/read-line';
-import { openDb } from './lib/fake-database';
+import { readLineAsync } from './promise-wrappers/read-line-async';
+import { openDbAsnc } from './promise-wrappers/fake-database-async';
 
 function main() {
-    readLine('Enter a name or id', function(err, nameOrId) {
-        if (err) console.error(err);
-        else {
-            openDb('contacts', function (db) {
-                db.queryForNameOrId(nameOrId, function (err, contact) {
-                    if (err) console.error(err);
-                    else displayContact(contact);
-                })
-            });
-        }
-    });
+    let enteredName;
+    readLineAsync('Enter a name or id')
+        .then(function(name) {
+            enteredName = name;
+            return openDbAsnc('contacts');
+        })
+        .then(function(db) {
+            return db.queryForNameOrId(enteredName);
+        })
+        .then(function(contact) {
+            displayContact(contact);
+        })
+        .catch(error => {
+            console.error(error);
+        });
 }
 
 function displayContact(contact) {
