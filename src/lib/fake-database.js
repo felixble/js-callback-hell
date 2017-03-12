@@ -1,5 +1,5 @@
 
-import { STORAGE } from './../../storage/storage';
+import { STORAGE } from '../storage/storage';
 
 export class Database {
     constructor(databaseUrl) {
