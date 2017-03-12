@@ -1,0 +1,45 @@
+{
+  "name": "js-callback-hell",
+  "version": "1.0.0",
+  "description": "Approach to write clean JavaScript code by avoiding the callback hell.",
+  "main": "src/main.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "clean": "rm -rf build && mkdir build",
+    "build": "npm run clean && babel -d build ./src -s",
+    "start": "node build/main.js",
+    "test": "npm run coverage",
+    "coverage": "babel-node ./node_modules/istanbul/lib/cli cover node_modules/mocha/bin/_mocha -- --recursive ./tests/"
+  },
+  "keywords": [
+    "JavaScript",
+    "callback hell",
+    "pyramid of doom",
+    "promise",
+    "async-await",
+    "clean code",
+    "es6",
+    "es2015"
+  ],
+  "author": "Felix Blechschmitt",
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-3": "^6.17.0"
+  },
+  "dependencies": {
+    "babel-register": "^6.18.0",
+    "babel-runtime": "^6.18.0",
+    "chai": "^3.5.0",
+    "child-process-promise": "^2.2.0",
+    "istanbul": "^1.0.0-alpha",
+    "mocha": "^3.1.2",
+    "prompt": "^1.0.0",
+    "sinon": "^1.17.7"
+  },
+  "license": "MIT"
+}
