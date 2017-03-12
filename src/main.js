@@ -3,12 +3,15 @@ import { openDb } from './lib/fake-database';
 
 function main() {
     readLine('Enter a name or id', function(err, nameOrId) {
-        openDb('contacts', function(db) {
-            db.queryForNameOrId(nameOrId, function(err, contact) {
-                if (err) console.error(err);
-                else displayContact(contact);
-            })
-        });
+        if (err) console.error(err);
+        else {
+            openDb('contacts', function (db) {
+                db.queryForNameOrId(nameOrId, function (err, contact) {
+                    if (err) console.error(err);
+                    else displayContact(contact);
+                })
+            });
+        }
     });
 }
 
